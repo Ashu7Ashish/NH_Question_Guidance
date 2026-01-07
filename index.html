@@ -6,59 +6,54 @@
   <title>National Highways • Question Guidance</title>
   <style>
 :root{
-  --bg:#f5f7fa;
+  --bg:#f4f6f9;
   --panel:#ffffff;
   --text:#0f172a;
   --muted:#475569;
   --border:#e2e8f0;
-  --shadow: 0 10px 24px rgba(15,23,42,0.08);
+  --shadow: 0 10px 26px rgba(15,23,42,0.10);
   --radius:16px;
 
-  /* NH-style accents (approx from screenshots) */
   --primary:#1e5cc8;
   --primary-2:#0b3a8c;
-  --chip:#fff3cd;
-  --chip-text:#8a6d3b;
+  --primary-soft: rgba(30,92,200,0.10);
+
+  --note-bg:#fff7d6;
+  --note-border:#ffd56a;
+
+  --link-bg: rgba(30,92,200,0.10);
 }
 *{box-sizing:border-box;}
-html,body{margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text);}
+html,body{
+  margin:0; padding:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(900px 500px at 15% 0%, rgba(30,92,200,0.06), transparent 55%), var(--bg);
+  color: var(--text);
+}
 a{color:inherit; text-decoration:none;}
 .container{max-width: 1320px; margin:0 auto; padding: 18px 18px 40px;}
-/* Top banner */
+
 .banner{
   position: sticky; top:0; z-index:10;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
-  padding: 10px 0;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.05);
 }
 .banner-inner{
-  max-width: 1320px; margin:0 auto; padding: 0 18px;
+  max-width: 1320px; margin:0 auto; padding: 10px 18px;
   display:flex; align-items:center; justify-content:space-between; gap:14px;
 }
-.brand{
-  display:flex; align-items:center; gap:12px;
-  min-width: 260px;
-}
-.brand img{height:36px; width:auto;}
-.brand .title{
-  display:flex; flex-direction:column; line-height:1.2;
-}
+.brand{display:flex; align-items:center; gap:12px; min-width: 260px;}
+.brand img{height:34px; width:auto;}
+.brand .title{display:flex; flex-direction:column; line-height:1.2;}
 .brand .title strong{font-size:14px;}
 .brand .title span{font-size:12px; color: var(--muted);}
 
-.layout{
-  display:grid;
-  grid-template-columns: 320px 1fr;
-  gap: 18px;
-  margin-top: 16px;
-}
-@media (max-width: 980px){
-  .layout{grid-template-columns: 1fr;}
-  .sidebar{position:static;}
-}
+.layout{display:grid; grid-template-columns: 340px 1fr; gap: 18px; margin-top: 16px;}
+@media (max-width: 980px){ .layout{grid-template-columns: 1fr;} .sidebar{position:static; height:auto;} }
 
 .topcard{
-  background: var(--panel);
+  background: linear-gradient(180deg, rgba(30,92,200,0.06), rgba(255,255,255,1));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -77,25 +72,14 @@ a{color:inherit; text-decoration:none;}
 }
 .searchbar input:focus{border-color: rgba(30,92,200,0.55); box-shadow: 0 0 0 3px rgba(30,92,200,0.15);}
 
-.btn{
-  padding: 10px 12px;
-  border-radius: 12px;
-  border:1px solid var(--border);
-  background: #ffffff;
-  cursor:pointer;
-  color: var(--text);
-}
-.btn-primary{
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
-}
+.btn{padding: 10px 12px; border-radius: 12px; border:1px solid var(--border); background: #ffffff; cursor:pointer; color: var(--text); font-weight:600;}
+.btn-primary{background: var(--primary); color:#fff; border-color: var(--primary);}
 .btn-primary:hover{filter: brightness(1.02);}
 .btn-ghost:hover{background:#f1f5f9;}
 
 .sidebar{
-  position: sticky; top: 78px;
-  height: calc(100vh - 96px);
+  position: sticky; top: 76px;
+  height: calc(100vh - 94px);
   overflow:auto;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -103,28 +87,13 @@ a{color:inherit; text-decoration:none;}
   box-shadow: var(--shadow);
   padding: 12px;
 }
-.sidebar h3{
-  margin: 6px 8px 10px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+.sidebar h3{margin: 6px 8px 10px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);}
 .nav{list-style:none; padding:0; margin:0;}
-.nav a{
-  display:block;
-  padding: 10px 10px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-}
+.nav a{display:block; padding: 10px 10px; border-radius: 12px; border: 1px solid transparent;}
 .nav a:hover{background:#f8fafc; border-color:#e7eef8;}
 .nav li{margin:0;}
 
 .main{display:flex; flex-direction:column; gap:14px;}
-
-.preface{
-  background: linear-gradient(180deg, rgba(30,92,200,0.06), rgba(255,255,255,1));
-}
 
 .q-card{
   background: var(--panel);
@@ -139,41 +108,208 @@ a{color:inherit; text-decoration:none;}
   border-bottom: 1px solid var(--border);
   background: #f8fafc;
 }
+.q-title{display:flex; gap:10px; align-items:flex-start;}
+.q-pill{
+  min-width:44px;
+  height:28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-2);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800;
+  font-size: 12px;
+  margin-top:2px;
+  border: 1px solid rgba(30,92,200,0.15);
+}
 .q-header h2{margin:0; font-size: 14px; line-height:1.4;}
 .q-actions{display:flex; gap:10px; flex-wrap:wrap;}
 .q-body{padding: 14px 16px; line-height: 1.65;}
 .q-body p{margin: 10px 0;}
-.q-body.collapsed{display:none;}
 .spacer{height:10px;}
 
-.table-wrap{margin: 12px 0 16px; border:1px solid var(--border); border-radius: 14px; overflow:hidden;}
-.table-actions{display:flex; justify-content:flex-end; padding:10px; background:#f8fafc; border-bottom: 1px solid var(--border);}
-.guidance-table{width:100%; border-collapse:collapse;}
+.table-wrap{margin: 12px 0 16px; border:1px solid var(--border); border-radius: 14px; overflow:auto;}
+.guidance-table{width:100%; border-collapse:collapse; min-width: 720px;}
 .guidance-table th,.guidance-table td{border-top: 1px solid var(--border); padding: 10px 12px; vertical-align:top;}
 .guidance-table th{background:#f1f5f9; text-align:left;}
 
-.img-inline{
-  margin: 12px 0 16px;
-  border:1px solid var(--border);
-  border-radius: 14px;
-  padding: 10px;
-  background: #ffffff;
-}
-.img-inline img{
-  width: 100%;
-  height: auto;
-  max-height: 560px;
-  object-fit: contain;
-  border-radius: 12px;
-  display:block;
-  border: 1px solid #eef2f7;
-}
+.img-inline{margin: 12px 0 16px; border:1px solid var(--border); border-radius: 14px; padding: 10px; background: #ffffff;}
+.img-inline img{width:100%; height:auto; max-height: 560px; object-fit: contain; border-radius: 12px; display:block; border: 1px solid #eef2f7;}
 .img-inline figcaption{margin-top:8px; color: var(--muted); font-size: 12px; line-height:1.4;}
 
+.score-list{
+  margin: 12px 0 16px;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow:hidden;
+}
+.score-list li{
+  display:flex;
+  gap:12px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  background:#ffffff;
+}
+.score-list li:first-child{border-top:none;}
+.score{
+  width:34px; height:34px; border-radius: 10px;
+  background: var(--primary-soft);
+  border: 1px solid rgba(30,92,200,0.18);
+  color: var(--primary-2);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900;
+}
+.score-text{color: var(--text);}
+
+.note-callout, .info-callout{
+  margin: 12px 0 16px;
+  border-radius: 14px;
+  padding: 12px 12px;
+  border: 1px solid var(--border);
+  background:#ffffff;
+}
+.note-callout{
+  border-color: var(--note-border);
+  background: var(--note-bg);
+}
+.note-title, .info-title{
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.note-body, .info-body{color: var(--text); line-height:1.6;}
+
+.hl-link{
+  display:inline-block;
+  padding: 2px 8px;
+  margin: 0 2px;
+  border-radius: 999px;
+  background: var(--link-bg);
+  border: 1px solid rgba(30,92,200,0.18);
+  color: var(--primary-2);
+  font-weight: 800;
+}
+.hl-link:hover{filter: brightness(0.98);}
+
 .footer-note{color: var(--muted); font-size: 12px; margin-top: 10px;}
+
+/* --- WOW interactions + animations --- */
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important;}
+}
+.banner{backdrop-filter:saturate(140%) blur(10px);}
+.q-card{
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform 520ms cubic-bezier(.2,.8,.2,1), opacity 520ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  will-change: transform, opacity;
+}
+.q-card.revealed{transform: translateY(0); opacity: 1;}
+.q-card:hover{
+  box-shadow: 0 18px 42px rgba(15,23,42,0.14);
+  border-color: rgba(30,92,200,0.25);
+}
+.q-card:target{
+  outline: none;
+  border-color: rgba(30,92,200,0.55);
+  box-shadow: 0 0 0 4px rgba(30,92,200,0.18), 0 18px 42px rgba(15,23,42,0.12);
+}
+.nav a{
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+.nav a:hover{transform: translateX(2px);}
+.nav a.active{
+  background: rgba(30,92,200,0.10);
+  border-color: rgba(30,92,200,0.22);
+}
+.btn{
+  transition: transform 120ms ease, box-shadow 120ms ease, background 160ms ease, border-color 160ms ease;
+}
+.btn:active{transform: translateY(1px);}
+.btn-primary{
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after{
+  content:"";
+  position:absolute; inset:-40% -60%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 45%, transparent 60%);
+  transform: translateX(-60%);
+  transition: transform 700ms ease;
+}
+.btn-primary:hover::after{transform: translateX(60%);}
+.searchbar input{
+  transition: box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+.searchbar input:focus{transform: translateY(-1px);}
+
+.img-inline img{
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+.img-inline a:hover img{
+  transform: scale(1.012);
+  box-shadow: 0 12px 22px rgba(15,23,42,0.12);
+}
+
+/* subtle animated gradient accent under headings */
+.topcard h1, .q-header h2{
+  background-image: linear-gradient(90deg, var(--primary-2), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Floating "Back to top" enhancement */
+.banner .btn-primary{
+  border-radius: 999px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Scroll progress bar */
+.progress-wrap{
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 20;
+  background: transparent;
+}
+.progress-bar{
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-2), var(--primary));
+  box-shadow: 0 0 10px rgba(30,92,200,0.35);
+}
+
+/* Toast */
+.toast{
+  position: fixed;
+  bottom: 18px; right: 18px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 18px 42px rgba(15,23,42,0.18);
+  padding: 12px 12px;
+  max-width: 360px;
+  display:flex; gap:10px; align-items:flex-start;
+  transform: translateY(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+  backdrop-filter: blur(10px) saturate(140%);
+}
+.toast.show{opacity: 1; transform: translateY(0); pointer-events:auto;}
+.toast .dot{
+  width:10px; height:10px; border-radius:999px; margin-top:5px;
+  background: linear-gradient(180deg, var(--primary-2), var(--primary));
+}
+.toast .t-title{font-weight:800; font-size:13px;}
+.toast .t-body{color: var(--muted); font-size:12px; line-height:1.4; margin-top:2px;}
+
 </style>
 </head>
 <body>
+  <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><div class="dot"></div><div><div class="t-title" id="toastTitle">Copied</div><div class="t-body" id="toastBody">Link copied to clipboard.</div></div></div>
   <div class="banner">
     <div class="banner-inner">
       <div class="brand">
@@ -200,22 +336,21 @@ a{color:inherit; text-decoration:none;}
 <li><a href='#q04' class='nav-link'>Q12.2 - The Inspection Summary is inconsistent with the overall condition?</a></li>
 <li><a href='#q05' class='nav-link'>Q13 - Have all significant elements been photographed at this inspection?</a></li>
 <li><a href='#q06' class='nav-link'>Q14 - Have any significant elements been recorded as not inspected?</a></li>
-<li><a href='#q07' class='nav-link'>Q14.1 If you answer Yes to this question, you will be prompted to give an example of the significant elements listed as not inspected; you are not required to list them all, a single example is sufficient.</a></li>
-<li><a href='#q08' class='nav-link'>Q21 - Have any potential emergency defects been missed?</a></li>
-<li><a href='#q09' class='nav-link'>Q22 - Have any potential fire hazards been missed?</a></li>
-<li><a href='#q10' class='nav-link'>Q17 - Do all defects with severity ratings 3,4 or 5 and/or extent ratings of C,D or E have an associated photograph?</a></li>
-<li><a href='#q11' class='nav-link'>Q18 - Are the defect photographs/captions correct?</a></li>
-<li><a href='#q12' class='nav-link'>Q19 - Is there sufficient evidence to support the severity / extent score assigned to the defects?</a></li>
-<li><a href='#q13' class='nav-link'>Q16 – Do the assigned defect types agree with the defect descriptions provided by the Inspector?</a></li>
-<li><a href='#q14' class='nav-link'>Q20 – Are there any instances where defects appear to have been recorded against the wrong inventory element?</a></li>
-<li><a href='#q15' class='nav-link'>Q15 – If applicable has required structural monitoring taken place? (PI only)</a></li>
-<li><a href='#q16' class='nav-link'>Q. 23  - Any further comments?</a></li>
+<li><a href='#q07' class='nav-link'>Q15 – If applicable has required structural monitoring taken place? (PI only)</a></li>
+<li><a href='#q08' class='nav-link'>Q16 – Do the assigned defect types agree with the defect descriptions provided by the Inspector?</a></li>
+<li><a href='#q09' class='nav-link'>Q17 - Do all defects with severity ratings 3,4 or 5 and/or extent ratings of C,D or E have an associated photograph?</a></li>
+<li><a href='#q10' class='nav-link'>Q18 - Are the defect photographs/captions correct?</a></li>
+<li><a href='#q11' class='nav-link'>Q19 - Is there sufficient evidence to support the severity / extent score assigned to the defects?</a></li>
+<li><a href='#q12' class='nav-link'>Q20 – Are there any instances where defects appear to have been recorded against the wrong inventory element?</a></li>
+<li><a href='#q13' class='nav-link'>Q21 - Have any potential emergency defects been missed?</a></li>
+<li><a href='#q14' class='nav-link'>Q22 - Have any potential fire hazards been missed?</a></li>
+<li><a href='#q15' class='nav-link'>Q. 23  - Any further comments?</a></li>
         </ul>
-        <div class="footer-note">Tip: Use “Copy link” on a question card to share a direct link.</div>
+        <div class="footer-note">Tip: Use “Copy link” to share a direct link to a question.</div>
       </aside>
 
       <main class="main">
-        <div class="topcard preface">
+        <div class="topcard">
           <h1>Guidance</h1>
           <p>Please view and read the instructions properly before starting the audit. Use search and the navigation panel to move between questions.</p>
           <div class="searchbar">
@@ -227,213 +362,886 @@ a{color:inherit; text-decoration:none;}
           </div>
         </div>
 
-        
-    <section class="q-card" id="q01" data-title="Q 10 – Has a General Photograph been uploaded to asset documents within the preceding 2 years?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q 10 – Has a General Photograph been uploaded to asset documents within the preceding 2 years?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q01')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q01')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q 10 – Has a General Photograph been uploaded to asset documents within the preceding 2 years?</p>
-<p>Answer Yes or No, provide details if the answer is No</p>
+        <section class="q-card" id="q01" data-title="Q 10 – Has a General Photograph been uploaded to asset documents within the preceding 2 years?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">10</div>
+      <h2>Q 10 – Has a General Photograph been uploaded to asset documents within the preceding 2 years?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q01')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes or No, provide details if the answer is No</p>
 <p>A general photograph should be present within the Asset ‘Documents’ tab within the General Photograph sub folder, with an associated date within the 24 months preceding the date of the current inspection.</p>
 <div class='spacer'></div>
-
-    <figure class="img-inline">
-      <a href="guidance_assets/img_03.jpg" target="_blank" rel="noopener">
-        <img src="guidance_assets/img_03.jpg" alt="Guidance image">
-      </a>
-      <figcaption>Click the image to open in a new window for a larger view.</figcaption>
-    </figure>
-    
-<div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q02" data-title="Q12,12.1, 12.2 - Is the inspection summary complete and consistent with the rest of the inspection report?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q12,12.1, 12.2 - Is the inspection summary complete and consistent with the rest of the inspection report?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q02')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q02')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q12,12.1, 12.2 - Is the inspection summary complete and consistent with the rest of the inspection report?</p>
-<p>[For some DBFO structures the inspection summary may be on the Inspection Report Document and may not appear in the inspection summary field within IAMIS. Where there is no requirement for an inspection summary, such as a BE11 Inspection and there is no attached inspection report, the score should be 5.]</p>
+<figure class="img-inline">
+  <a href="guidance_assets/img_01.jpg" target="_blank" rel="noopener"><img src="guidance_assets/img_01.jpg" alt="Guidance image"></a>
+  <figcaption>Click the image to open in a new window for a larger view.</figcaption>
+</figure>
+<div class='spacer'></div></div>
+</section>
+<section class="q-card" id="q02" data-title="Q12,12.1, 12.2 - Is the inspection summary complete and consistent with the rest of the inspection report?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">12</div>
+      <h2>Q12,12.1, 12.2 - Is the inspection summary complete and consistent with the rest of the inspection report?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q02')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>[For some DBFO structures the inspection summary may be on the Inspection Report Document and may not appear in the inspection summary field within IAMIS. Where there is no requirement for an inspection summary, such as a BE11 Inspection and there is no attached inspection report, the score should be 5.]</p>
 <p>Grade your agreement with this statement from 1(strongly disagree) to 5 (strongly agree).  A guide to grading is as follows.</p>
-<p>5 – Matches all requirements of the guidance and is fully consistent with the rest of the report.</p>
-<p>4 – Minor, cosmetic defects not mentioned</p>
-<p>3 – Some minor inconsistencies, such as maintenance actions not matching up or interim measures not commented on.</p>
-<p>2 – Defects with repair recommendations not mentioned in the Summary</p>
-<p>1 – Summary missing or major inconsistencies</p>
+<ol class='score-list'><li><span class='score'>5</span><span class='score-text'>Matches all requirements of the guidance and is fully consistent with the rest of the report.</span></li>
+<li><span class='score'>4</span><span class='score-text'>Minor, cosmetic defects not mentioned</span></li>
+<li><span class='score'>3</span><span class='score-text'>Some minor inconsistencies, such as maintenance actions not matching up or interim measures not commented on.</span></li>
+<li><span class='score'>2</span><span class='score-text'>Defects with repair recommendations not mentioned in the Summary</span></li>
+<li><span class='score'>1</span><span class='score-text'>Summary missing or major inconsistencies</span></li></ol>
 <p>The inspection summary should be consistent with all other parts of the inspection report.  If a defect or maintenance requirement is identified in the inspection summary, it should also be identified, with matching details in the ‘Observations/Defects Confirmed at this Inspection’ section of the report, likewise, if a significant defect, requiring repairs, is observed and recorded during the inspection, it should be listed in the ‘Inspection Summary’.</p>
 <p>SMIS user manuals gave guidance on this field.</p>
-<div class='table-wrap'><div class='table-actions'><button class='btn btn-ghost' onclick="openTableWindow('tbl_001')">Open table in new window</button></div><table id='tbl_001' class='guidance-table'><tr><th>Inspection Summary</th><th>This should give a representative overview of the structure condition in relation to its construction type, age and usage. Defects, which are or may affect the structural integrity and / or the durability of the structure, should be specifically identified. Defects, which affect appearance, only should be briefly summarised. Significant proposed Maintenance Actions should be identified.</th></tr></table></div>
-<p>If your response is between 1 and 3 then you will be prompted to answer the following sub-questions, and provide details where the response is Yes, selecting all that apply:</p>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q03" data-title="Q12.1 - The Inspection Summary is inconsistent with defects and/or maintenance actions recorded">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q12.1 - The Inspection Summary is inconsistent with defects and/or maintenance actions recorded</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q03')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q03')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q12.1 - The Inspection Summary is inconsistent with defects and/or maintenance actions recorded</p>
-<p>Significant defects or maintenance works are recorded in the inspection report and their details do not match those for the same defects or works recorded in the Inspection Summary. e.g., the stated cause or likely effect of a defect is recorded differently in the two locations.</p>
-<p>If you answer Yes to this question, you will be prompted to provide information as to why it is inconsistent.  Please try to make this as specific as possible, by providing defect or report page numbers</p>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q04" data-title="Q12.2 - The Inspection Summary is inconsistent with the overall condition?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q12.2 - The Inspection Summary is inconsistent with the overall condition?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q04')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q04')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q12.2 - The Inspection Summary is inconsistent with the overall condition?</p>
-<p>The overall condition field in the ‘Summary’ section of the inspection report is different to any condition statements given in the ‘Inspection Summary’.</p>
-<p>If you answer Yes to this question, you will be prompted to provide information as to why it is inconsistent.  Please try to make this as specific as possible, by providing defect or report page numbers. </p>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q05" data-title="Q13 - Have all significant elements been photographed at this inspection?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q13 - Have all significant elements been photographed at this inspection?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q05')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q05')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q13 - Have all significant elements been photographed at this inspection?</p>
-<p>Answer Yes or No, provide details if the answer is No</p>
+<div class="info-callout">
+  <div class="info-title">Inspection Summary</div>
+  <div class="info-body">This should give a representative overview of the structure condition in relation to its construction type, age and usage. Defects, which are or may affect the structural integrity and / or the durability of the structure, should be specifically identified. Defects, which affect appearance, only should be briefly summarised. Significant proposed Maintenance Actions should be identified.</div>
+</div>
+<p>If your response is between 1 and 3 then you will be prompted to answer the following sub-questions, and provide details where the response is Yes, selecting all that apply:</p></div>
+</section>
+<section class="q-card" id="q03" data-title="Q12.1 - The Inspection Summary is inconsistent with defects and/or maintenance actions recorded">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">12.1</div>
+      <h2>Q12.1 - The Inspection Summary is inconsistent with defects and/or maintenance actions recorded</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q03')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Significant defects or maintenance works are recorded in the inspection report and their details do not match those for the same defects or works recorded in the Inspection Summary. e.g., the stated cause or likely effect of a defect is recorded differently in the two locations.</p>
+<p>If you answer Yes to this question, you will be prompted to provide information as to why it is inconsistent.  Please try to make this as specific as possible, by providing defect or report page numbers</p></div>
+</section>
+<section class="q-card" id="q04" data-title="Q12.2 - The Inspection Summary is inconsistent with the overall condition?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">12.2</div>
+      <h2>Q12.2 - The Inspection Summary is inconsistent with the overall condition?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q04')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>The overall condition field in the ‘Summary’ section of the inspection report is different to any condition statements given in the ‘Inspection Summary’.</p>
+<p>If you answer Yes to this question, you will be prompted to provide information as to why it is inconsistent.  Please try to make this as specific as possible, by providing defect or report page numbers. </p></div>
+</section>
+<section class="q-card" id="q05" data-title="Q13 - Have all significant elements been photographed at this inspection?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">13</div>
+      <h2>Q13 - Have all significant elements been photographed at this inspection?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q05')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes or No, provide details if the answer is No</p>
 <p>Photographs will be saved within the asset’s ‘Documents’ section and can also be viewed in the ‘Contextual Report’ of the Inspection Activity (as below).</p>
 <div class='spacer'></div>
-
-    <figure class="img-inline">
-      <a href="guidance_assets/img_02.jpg" target="_blank" rel="noopener">
-        <img src="guidance_assets/img_02.jpg" alt="Guidance image">
-      </a>
-      <figcaption>Click the image to open in a new window for a larger view.</figcaption>
-    </figure>
-    
+<figure class="img-inline">
+  <a href="guidance_assets/img_02.jpg" target="_blank" rel="noopener"><img src="guidance_assets/img_02.jpg" alt="Guidance image"></a>
+  <figcaption>Click the image to open in a new window for a larger view.</figcaption>
+</figure>
 <p>Has a clear photograph of every significant element of the structure (excluding foundations) been included within the ‘Inspection Photographs’ section of the inspection report? </p>
 <p>Significant elements are those identified for the relevant structure type within the Significant Element Importance list.</p>
-<div class='table-wrap'><div class='table-actions'><button class='btn btn-ghost' onclick="openTableWindow('tbl_002')">Open table in new window</button></div><table id='tbl_002' class='guidance-table'><tr><th>Element Type</th><th>Bridge &amp; Large Culverts</th><th>Small Span Structures</th><th>Retaining Walls</th><th>Sign/Signal Gantries</th><th>Masts &amp; Mast Schemes</th></tr><tr><td>Abutment Wall</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Bearing</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Bracing</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Cable</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Cable Anchor Box</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Cable Hangar</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Cable System</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Crosshead</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Deck</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Diaphragm</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>End Support</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Expansion Joint</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Floating Slab</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Foundation</td><td>P</td><td></td><td>P</td><td>P</td><td>P</td></tr><tr><td>Headwall</td><td></td><td>P</td><td></td><td></td><td></td></tr><tr><td>Intermediate Support</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Piers / Columns</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Longitudinal Beam</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Longitudinal Beam Detail</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Maintenance Access</td><td></td><td></td><td></td><td>P</td><td></td></tr><tr><td>Mast</td><td></td><td></td><td></td><td></td><td>P</td></tr><tr><td>Mast Connection</td><td></td><td></td><td></td><td></td><td>P</td></tr><tr><td>Movement Joint</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Panel</td><td></td><td></td><td>P</td><td></td><td></td></tr><tr><td>Parapet Beam / Plinth</td><td>P</td><td></td><td>P</td><td></td><td></td></tr><tr><td>Pedestrian Restraint System</td><td>P</td><td>P</td><td>P</td><td>P</td><td></td></tr><tr><td>Pylon</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Road Vehicle Restraint System</td><td>P</td><td>P</td><td>P</td><td>P</td><td></td></tr><tr><td>Slab or Arch</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Small Culvert</td><td></td><td>P</td><td></td><td></td><td></td></tr><tr><td>Span Connection</td><td></td><td></td><td></td><td>P</td><td></td></tr><tr><td>Spandrel Wall</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Structural Joint</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Support Connection</td><td></td><td></td><td></td><td>P</td><td></td></tr><tr><td>Tie Beam or Rod</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Transverse Beam</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Wingwall</td><td>P</td><td>P</td><td></td><td></td><td></td></tr></table></div>
+<div class='table-wrap'><table class='guidance-table'>
+<tr>
+<th>Element Type</th>
+<th>Bridge &amp; Large Culverts</th>
+<th>Small Span Structures</th>
+<th>Retaining Walls</th>
+<th>Sign/Signal Gantries</th>
+<th>Masts &amp; Mast Schemes</th>
+</tr>
+<tr>
+<td>Abutment Wall</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bearing</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bracing</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Cable</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable Anchor Box</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable Hangar</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable System</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Crosshead</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Deck</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Diaphragm</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>End Support</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Expansion Joint</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Floating Slab</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Foundation</td>
+<td>P</td>
+<td></td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+</tr>
+<tr>
+<td>Headwall</td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Intermediate Support</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Piers / Columns</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Longitudinal Beam</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Longitudinal Beam Detail</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Maintenance Access</td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Mast</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+</tr>
+<tr>
+<td>Mast Connection</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+</tr>
+<tr>
+<td>Movement Joint</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Panel</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Parapet Beam / Plinth</td>
+<td>P</td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pedestrian Restraint System</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Pylon</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Road Vehicle Restraint System</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Slab or Arch</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Small Culvert</td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Span Connection</td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Spandrel Wall</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Structural Joint</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Support Connection</td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Tie Beam or Rod</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Transverse Beam</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Wingwall</td>
+<td>P</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></div>
 <div class='spacer'></div>
 <p>If you answer No to this question, you will be prompted to give examples of significant elements not photographed; you are not required to list them all, a single example is sufficient.</p>
-<div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q06" data-title="Q14 - Have any significant elements been recorded as not inspected?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q14 - Have any significant elements been recorded as not inspected?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q06')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q06')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q14 - Have any significant elements been recorded as not inspected?</p>
-<p>Answer Yes/No</p>
+<div class='spacer'></div></div>
+</section>
+<section class="q-card" id="q06" data-title="Q14 - Have any significant elements been recorded as not inspected?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">14</div>
+      <h2>Q14 - Have any significant elements been recorded as not inspected?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q06')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes/No</p>
 <p>Elements that were not inspected should be recorded on the Inspection Activity ‘Attributes’ tab within the ‘Parts of the Structure Not Inspected’ field.  This is not dependant on the inspection type and uninspected elements should be recorded for GI’s as well as PI’s.  The list of uninspected elements is likely to be longer for a General Inspection.</p>
 <p>Buried elements such as foundations and waterproofing do not count for the purposes of this question. A comprehensive list of uninspected elements is not required but they may be described in general terms, such as ‘inaccessible higher parts of the structure’.</p>
 <p>Significant elements are those identified for the relevant structure type within the Significant Element Importance list.</p>
-<div class='table-wrap'><div class='table-actions'><button class='btn btn-ghost' onclick="openTableWindow('tbl_003')">Open table in new window</button></div><table id='tbl_003' class='guidance-table'><tr><th>Element Type</th><th>Bridge &amp; Large Culverts</th><th>Small Span Structures</th><th>Retaining Walls</th><th>Sign/Signal Gantries</th><th>Masts &amp; Mast Schemes</th></tr><tr><td>Abutment Wall</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Bearing</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Bracing</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Cable</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Cable Anchor Box</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Cable Hangar</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Cable System</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Crosshead</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Deck</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Diaphragm</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>End Support</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Expansion Joint</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Floating Slab</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Foundation</td><td>P</td><td></td><td>P</td><td>P</td><td>P</td></tr><tr><td>Headwall</td><td></td><td>P</td><td></td><td></td><td></td></tr><tr><td>Intermediate Support</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Piers / Columns</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Longitudinal Beam</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Longitudinal Beam Detail</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Maintenance Access</td><td></td><td></td><td></td><td>P</td><td></td></tr><tr><td>Mast</td><td></td><td></td><td></td><td></td><td>P</td></tr><tr><td>Mast Connection</td><td></td><td></td><td></td><td></td><td>P</td></tr><tr><td>Movement Joint</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Panel</td><td></td><td></td><td>P</td><td></td><td></td></tr><tr><td>Parapet Beam / Plinth</td><td>P</td><td></td><td>P</td><td></td><td></td></tr><tr><td>Pedestrian Restraint System</td><td>P</td><td>P</td><td>P</td><td>P</td><td></td></tr><tr><td>Pylon</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Road Vehicle Restraint System</td><td>P</td><td>P</td><td>P</td><td>P</td><td></td></tr><tr><td>Slab or Arch</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Small Culvert</td><td></td><td>P</td><td></td><td></td><td></td></tr><tr><td>Span Connection</td><td></td><td></td><td></td><td>P</td><td></td></tr><tr><td>Spandrel Wall</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Structural Joint</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Support Connection</td><td></td><td></td><td></td><td>P</td><td></td></tr><tr><td>Tie Beam or Rod</td><td>P</td><td></td><td></td><td></td><td></td></tr><tr><td>Transverse Beam</td><td>P</td><td></td><td></td><td>P</td><td></td></tr><tr><td>Wingwall</td><td>P</td><td>P</td><td></td><td></td><td></td></tr></table></div>
+<div class='table-wrap'><table class='guidance-table'>
+<tr>
+<th>Element Type</th>
+<th>Bridge &amp; Large Culverts</th>
+<th>Small Span Structures</th>
+<th>Retaining Walls</th>
+<th>Sign/Signal Gantries</th>
+<th>Masts &amp; Mast Schemes</th>
+</tr>
+<tr>
+<td>Abutment Wall</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bearing</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bracing</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Cable</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable Anchor Box</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable Hangar</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable System</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Crosshead</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Deck</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Diaphragm</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>End Support</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Expansion Joint</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Floating Slab</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Foundation</td>
+<td>P</td>
+<td></td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+</tr>
+<tr>
+<td>Headwall</td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Intermediate Support</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Piers / Columns</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Longitudinal Beam</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Longitudinal Beam Detail</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Maintenance Access</td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Mast</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+</tr>
+<tr>
+<td>Mast Connection</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+</tr>
+<tr>
+<td>Movement Joint</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Panel</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Parapet Beam / Plinth</td>
+<td>P</td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pedestrian Restraint System</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Pylon</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Road Vehicle Restraint System</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Slab or Arch</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Small Culvert</td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Span Connection</td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Spandrel Wall</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Structural Joint</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Support Connection</td>
+<td></td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Tie Beam or Rod</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Transverse Beam</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>Wingwall</td>
+<td>P</td>
+<td>P</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></div>
 <div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q07" data-title="Q14.1 If you answer Yes to this question, you will be prompted to give an example of the significant elements listed as not inspected; you are not required to list them all, a single example is sufficient.">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q14.1 If you answer Yes to this question, you will be prompted to give an example of the significant elements listed as not inspected; you are not required to list them all, a single example is sufficient.</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q07')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q07')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q14.1 If you answer Yes to this question, you will be prompted to give an example of the significant elements listed as not inspected; you are not required to list them all, a single example is sufficient.</p>
+<div class="info-callout">
+  <div class="info-title">Q14.1</div>
+  <div class="info-body"><p>Q14.1 If you answer Yes to this question, you will be prompted to give an example of the significant elements listed as not inspected; you are not required to list them all, a single example is sufficient.</p>
 <div class='spacer'></div>
-
-    <figure class="img-inline">
-      <a href="guidance_assets/img_01.jpg" target="_blank" rel="noopener">
-        <img src="guidance_assets/img_01.jpg" alt="Guidance image">
-      </a>
-      <figcaption>Click the image to open in a new window for a larger view.</figcaption>
-    </figure>
-    
+<figure class="img-inline">
+  <a href="guidance_assets/img_03.jpg" target="_blank" rel="noopener"><img src="guidance_assets/img_03.jpg" alt="Guidance image"></a>
+  <figcaption>Click the image to open in a new window for a larger view.</figcaption>
+</figure>
+<div class='spacer'></div></div>
+</div></div>
+</section>
+<section class="q-card" id="q07" data-title="Q15 – If applicable has required structural monitoring taken place? (PI only)">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">15</div>
+      <h2>Q15 – If applicable has required structural monitoring taken place? (PI only)</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q07')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes / No</p>
+<p>Have the measurements / dimensional monitoring required by <a class="hl-link" href="https://www.standardsforhighways.co.uk/search/html/bcef00c3-d3cc-468f-acc3-81b1ff9c1aa0?standard=DMRB" target="_blank" rel="noopener">CD361</a> / <a class="hl-link" href="https://standardsforhighways.co.uk/search/html/fe342c88-c97c-4f41-aa73-49c1cbbd97e1?standard=DMRB" target="_blank" rel="noopener">CS460</a> been carried out at PI, for weathering steel structures/ corrugated buried metal structures?</p>
+<p>If the answer to the above question is No then you will be prompted to give an example, please provide a specific example such as,</p>
+<p>The structure is a weathering steel gantry and no section thickness measurements have been recorded at this inspection.</p>
+<div class='spacer'></div></div>
+</section>
+<section class="q-card" id="q08" data-title="Q16 – Do the assigned defect types agree with the defect descriptions provided by the Inspector?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">16</div>
+      <h2>Q16 – Do the assigned defect types agree with the defect descriptions provided by the Inspector?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q08')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer All of the time, Some of the time, None of the time.</p>
+<div class='note-callout'><div class='note-title'>Note</div><div class='note-body'>Note: If no defects are present the response shall be ‘All of the time’.</div></div>
+<p>For BE11 reports defect types are not entered so please respond ‘All of the time’.</p>
+<p>The Comments on a defect should be compatible with the Defect type, as below.</p>
 <div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q08" data-title="Q21 - Have any potential emergency defects been missed?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q21 - Have any potential emergency defects been missed?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q08')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q08')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q21 - Have any potential emergency defects been missed?</p>
-<p>Answer Yes/No</p>
+<figure class="img-inline">
+  <a href="guidance_assets/img_04.jpg" target="_blank" rel="noopener"><img src="guidance_assets/img_04.jpg" alt="Guidance image"></a>
+  <figcaption>Click the image to open in a new window for a larger view.</figcaption>
+</figure></div>
+</section>
+<section class="q-card" id="q09" data-title="Q17 - Do all defects with severity ratings 3,4 or 5 and/or extent ratings of C,D or E have an associated photograph?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">17</div>
+      <h2>Q17 - Do all defects with severity ratings 3,4 or 5 and/or extent ratings of C,D or E have an associated photograph?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q09')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes/No/N/A</p>
+<p>Answer ‘Yes’ if no defects with severity (Sev) ratings 3,4 or 5 and/or extent (Ext) ratings of C,D or E are present.</p>
+<p>In the case of BE11 reports the answer will be ‘N/A’ as there is no requirement for photographs.</p>
+<p>The defect’s severity and extent are listed in the inspection defects list on the ‘Defects’ tab, in the ‘Ext’ &amp; ‘Sev’ columns.  The second letter/digit of the Severity and extent is what is referred to above.</p>
+<div class='spacer'></div>
+<figure class="img-inline">
+  <a href="guidance_assets/img_05.png" target="_blank" rel="noopener"><img src="guidance_assets/img_05.png" alt="Guidance image"></a>
+  <figcaption>Click the image to open in a new window for a larger view.</figcaption>
+</figure>
+<p>In this example the Extent = ‘B’ and the Severity = ‘1’</p>
+<div class='note-callout'><div class='note-title'>Note</div><div class='note-body'>Note: It must be remembered that defect photographs may have been uploaded in a separate document saved under the ‘Documents’ tab or within a standalone inspection report.</div></div></div>
+</section>
+<section class="q-card" id="q10" data-title="Q18 - Are the defect photographs/captions correct?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">18</div>
+      <h2>Q18 - Are the defect photographs/captions correct?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q10')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes/No</p>
+<p>Do the photographs attached to defects match the defect and the caption adjacent to the photo? </p>
+<p>Answer shall be ‘N/A’ if there are no defects and hence no photographs or captions.</p>
+<p>In the case of BE11 reports the answer will be ‘N/A’ as there is no requirement for photographs. </p>
+<p>If the answer to the above question is No then you will be prompted to give an example of where the errors lay, for example.</p>
+<p>“Photograph on page 20 of the inspection report; caption refers to bearings, photograph is of a safety fence.”</p>
+<p>The defect photos are most easily reviewed by generating the Inspection contextual report and saving or printing it as a .pdf file.</p>
+<div class='spacer'></div></div>
+</section>
+<section class="q-card" id="q11" data-title="Q19 - Is there sufficient evidence to support the severity / extent score assigned to the defects?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">19</div>
+      <h2>Q19 - Is there sufficient evidence to support the severity / extent score assigned to the defects?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q11')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>View the information within the inspection report and use your judgement to grade your agreement with the statement above from 5 (strongly agree) to 1 (strongly disagree).  A guide to grading is as follows.</p>
+<div class='note-callout'><div class='note-title'>Note</div><div class='note-body'>Note: If no defects are present and/or the report is a BE11 Inspection, then the response shall be 5.</div></div>
+<ol class='score-list'><li><span class='score'>5</span><span class='score-text'>All (100%) defects identified within the report are clearly shown in photographs (and/or sketches), and all (100%) defect severity / extent ratings appear to be correct</span></li>
+<li><span class='score'>4</span><span class='score-text'>Most (between 75% and 100%) defects identified within the report are clearly shown in photographs (and/or sketches), and most (between 75% and 100%) defect severity / extent ratings appear to be correct.</span></li>
+<li><span class='score'>3</span><span class='score-text'>One of the following applies:</span></li></ol>
+<p>A significant proportion (between 25% and 50%) of defects are not clearly shown in photographs (and/or sketches)</p>
+<p>Or</p>
+<p>A significant proportion (between 25% and 50%) of defect severity / extent ratings appear to be erroneous.</p>
+<ol class='score-list'><li><span class='score'>2</span><span class='score-text'>One of the following applies:</span></li></ol>
+<p>The majority (between 50% and 100%) of defects are not clearly shown in photographs (and/or sketches)</p>
+<p>Or</p>
+<p>The majority (between 50% and 100%) of defect severity / extent ratings appear to be erroneous.</p>
+<ol class='score-list'><li><span class='score'>1</span><span class='score-text'>Both of the following apply:</span></li></ol>
+<p>The majority (between 50% and 100%) of defects are not clearly shown in photographs (and/or sketches)</p>
+<p>And</p>
+<p>The majority (between 50% and 100%) of defect severity / extent ratings appear to be erroneous. </p>
+<p>If your response is between 1 and 3 then you will be prompted to provide an explanation describing what the deficiencies were. Please provide specific examples with reference to the inspection.</p>
+<div class='spacer'></div></div>
+</section>
+<section class="q-card" id="q12" data-title="Q20 – Are there any instances where defects appear to have been recorded against the wrong inventory element?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">20</div>
+      <h2>Q20 – Are there any instances where defects appear to have been recorded against the wrong inventory element?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q12')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes/No </p>
+<p>If the answer is Yes you will be prompted to provide details, please provide a specific example with reference to the inspection / defect.</p>
+<p>Defects should be recorded to the specific Inspection element in the inventory that they relate to, for example.</p>
+<p>A blocked weep pipe in an abutment should be recorded against a Drainage element, not the Abutment element</p>
+<div class='spacer'></div></div>
+</section>
+<section class="q-card" id="q13" data-title="Q21 - Have any potential emergency defects been missed?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">21</div>
+      <h2>Q21 - Have any potential emergency defects been missed?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q13')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes/No</p>
 <p>Respond Yes and record the details of the defect if, from the information contained within the inspection report.</p>
 <p>You suspect any defects identified should have been flagged as emergencies and have not</p>
 <p>If defects are visible within photographs that have not been mentioned in the inspection report that should be dealt with as an emergency, such as a missing manhole cover.</p>
-<p>If suspected emergency defects are identified, please report these immediately to your local Operations colleague with responsibility for structures.</p>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q09" data-title="Q22 - Have any potential fire hazards been missed?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q22 - Have any potential fire hazards been missed?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q09')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q09')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q22 - Have any potential fire hazards been missed?</p>
-<p>Answer Yes/No</p>
+<p>If suspected emergency defects are identified, please report these immediately to your local Operations colleague with responsibility for structures.</p></div>
+</section>
+<section class="q-card" id="q14" data-title="Q22 - Have any potential fire hazards been missed?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">22</div>
+      <h2>Q22 - Have any potential fire hazards been missed?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q14')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Answer Yes/No</p>
 <p>Respond Yes and record the details of the hazard if, from the information contained within the inspection report.</p>
 <p>You note anything visible within the inspection photographs that might constitute a fire hazard to the structure, for example,</p>
 <p>Potentially flammable materials (e.g. tyres, pallets, scrap vehicles, waste skips) stored beneath/adjacent to a structure</p>
@@ -441,240 +1249,35 @@ a{color:inherit; text-decoration:none;}
 <p>Fuel storage under or near a structure</p>
 <p>If you answer Yes, please provide details, if possible please provide a page or defect number where the evidence exists.</p>
 <p>If suspected fire hazards are identified, please report these immediately to your local Operations colleague with responsibility for structures. </p>
-<div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q10" data-title="Q17 - Do all defects with severity ratings 3,4 or 5 and/or extent ratings of C,D or E have an associated photograph?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q17 - Do all defects with severity ratings 3,4 or 5 and/or extent ratings of C,D or E have an associated photograph?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q10')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q10')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q17 - Do all defects with severity ratings 3,4 or 5 and/or extent ratings of C,D or E have an associated photograph?</p>
-<p>Answer Yes/No/N/A</p>
-<p>Answer ‘Yes’ if no defects with severity (Sev) ratings 3,4 or 5 and/or extent (Ext) ratings of C,D or E are present.</p>
-<p>In the case of BE11 reports the answer will be ‘N/A’ as there is no requirement for photographs.</p>
-<p>The defect’s severity and extent are listed in the inspection defects list on the ‘Defects’ tab, in the ‘Ext’ &amp; ‘Sev’ columns.  The second letter/digit of the Severity and extent is what is referred to above.</p>
-<div class='spacer'></div>
-
-    <figure class="img-inline">
-      <a href="guidance_assets/img_05.png" target="_blank" rel="noopener">
-        <img src="guidance_assets/img_05.png" alt="Guidance image">
-      </a>
-      <figcaption>Click the image to open in a new window for a larger view.</figcaption>
-    </figure>
-    
-<p>In this example the Extent = ‘B’ and the Severity = ‘1’</p>
-<p>Note: It must be remembered that defect photographs may have been uploaded in a separate document saved under the ‘Documents’ tab or within a standalone inspection report.</p>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q11" data-title="Q18 - Are the defect photographs/captions correct?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q18 - Are the defect photographs/captions correct?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q11')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q11')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q18 - Are the defect photographs/captions correct?</p>
-<p>Answer Yes/No</p>
-<p>Do the photographs attached to defects match the defect and the caption adjacent to the photo? </p>
-<p>Answer shall be ‘N/A’ if there are no defects and hence no photographs or captions.</p>
-<p>In the case of BE11 reports the answer will be ‘N/A’ as there is no requirement for photographs. </p>
-<p>If the answer to the above question is No then you will be prompted to give an example of where the errors lay, for example.</p>
-<p>“Photograph on page 20 of the inspection report; caption refers to bearings, photograph is of a safety fence.”</p>
-<p>The defect photos are most easily reviewed by generating the Inspection contextual report and saving or printing it as a .pdf file.</p>
-<div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q12" data-title="Q19 - Is there sufficient evidence to support the severity / extent score assigned to the defects?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q19 - Is there sufficient evidence to support the severity / extent score assigned to the defects?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q12')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q12')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q19 - Is there sufficient evidence to support the severity / extent score assigned to the defects?</p>
-<p>View the information within the inspection report and use your judgement to grade your agreement with the statement above from 5 (strongly agree) to 1 (strongly disagree).  A guide to grading is as follows.</p>
-<p>Note: If no defects are present and/or the report is a BE11 Inspection, then the response shall be 5.</p>
-<p>5 – All (100%) defects identified within the report are clearly shown in photographs (and/or sketches), and all (100%) defect severity / extent ratings appear to be correct</p>
-<p>4 – Most (between 75% and 100%) defects identified within the report are clearly shown in photographs (and/or sketches), and most (between 75% and 100%) defect severity / extent ratings appear to be correct.</p>
-<p>3 – One of the following applies:</p>
-<p>A significant proportion (between 25% and 50%) of defects are not clearly shown in photographs (and/or sketches)</p>
-<p>Or</p>
-<p>A significant proportion (between 25% and 50%) of defect severity / extent ratings appear to be erroneous.</p>
-<p>2 – One of the following applies:</p>
-<p>The majority (between 50% and 100%) of defects are not clearly shown in photographs (and/or sketches)</p>
-<p>Or</p>
-<p>The majority (between 50% and 100%) of defect severity / extent ratings appear to be erroneous.</p>
-<p>1 – Both of the following apply:</p>
-<p>The majority (between 50% and 100%) of defects are not clearly shown in photographs (and/or sketches)</p>
-<p>And</p>
-<p>The majority (between 50% and 100%) of defect severity / extent ratings appear to be erroneous. </p>
-<p>If your response is between 1 and 3 then you will be prompted to provide an explanation describing what the deficiencies were. Please provide specific examples with reference to the inspection.</p>
-<div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q13" data-title="Q16 – Do the assigned defect types agree with the defect descriptions provided by the Inspector?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q16 – Do the assigned defect types agree with the defect descriptions provided by the Inspector?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q13')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q13')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q16 – Do the assigned defect types agree with the defect descriptions provided by the Inspector?</p>
-<p>Answer All of the time, Some of the time, None of the time.</p>
-<p>Note: If no defects are present the response shall be ‘All of the time’.</p>
-<p>For BE11 reports defect types are not entered so please respond ‘All of the time’.</p>
-<p>The Comments on a defect should be compatible with the Defect type, as below.</p>
-<div class='spacer'></div>
-
-    <figure class="img-inline">
-      <a href="guidance_assets/img_04.jpg" target="_blank" rel="noopener">
-        <img src="guidance_assets/img_04.jpg" alt="Guidance image">
-      </a>
-      <figcaption>Click the image to open in a new window for a larger view.</figcaption>
-    </figure>
-    
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q14" data-title="Q20 – Are there any instances where defects appear to have been recorded against the wrong inventory element?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q20 – Are there any instances where defects appear to have been recorded against the wrong inventory element?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q14')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q14')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q20 – Are there any instances where defects appear to have been recorded against the wrong inventory element?</p>
-<p>Answer Yes/No </p>
-<p>If the answer is Yes you will be prompted to provide details, please provide a specific example with reference to the inspection / defect.</p>
-<p>Defects should be recorded to the specific Inspection element in the inventory that they relate to, for example.</p>
-<p>A blocked weep pipe in an abutment should be recorded against a Drainage element, not the Abutment element</p>
-<div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q15" data-title="Q15 – If applicable has required structural monitoring taken place? (PI only)">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q15 – If applicable has required structural monitoring taken place? (PI only)</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q15')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q15')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q15 – If applicable has required structural monitoring taken place? (PI only)</p>
-<p>Answer Yes / No</p>
-<p>Have the measurements / dimensional monitoring required by CD361 / CS460 been carried out at PI, for weathering steel structures/ corrugated buried metal structures?</p>
-<p>If the answer to the above question is No then you will be prompted to give an example, please provide a specific example such as,</p>
-<p>The structure is a weathering steel gantry and no section thickness measurements have been recorded at this inspection.</p>
-<div class='spacer'></div>
-      </div>
-    </section>
-    
-
-    <section class="q-card" id="q16" data-title="Q. 23  - Any further comments?">
-      <header class="q-header">
-        <div class="q-title">
-          <h2>Q. 23  - Any further comments?</h2>
-        </div>
-        <div class="q-actions">
-          <button class="btn btn-ghost" onclick="copyLink('q16')">Copy link</button>
-          <button class="btn btn-ghost" onclick="toggleCollapse('q16')">Collapse/Expand</button>
-        </div>
-      </header>
-      <div class="q-body">
-        <p>Q. 23  - Any further comments?</p>
-<p>Please use this space to record any further information you think has not been covered, that is relevant to the quality of the inspection report.  Please ensure that any statements made are backed up with specific examples from the inspection.</p>
-<p>Note: When reviewing inspections significant issues may became apparent that would not be captured by specific questions within the template. These issues may not always be related to the quality of the inspection report. For example, a bridge may have no interim measures in place but the recorded capacity below 40 Tonnes Assessment Live Loading. It is important that such issues are not ignored, and any such issues identified in the course of undertaking the review should be captured in the ‘Further Comments’ box.</p>
+<div class='spacer'></div></div>
+</section>
+<section class="q-card" id="q15" data-title="Q. 23  - Any further comments?">
+  <header class="q-header">
+    <div class="q-title">
+      <div class="q-pill">23</div>
+      <h2>Q. 23  - Any further comments?</h2>
+    </div>
+    <div class="q-actions">
+      <button class="btn btn-ghost" onclick="copyLink('q15')">Copy link</button>
+    </div>
+  </header>
+  <div class="q-body"><p>Please use this space to record any further information you think has not been covered, that is relevant to the quality of the inspection report.  Please ensure that any statements made are backed up with specific examples from the inspection.</p>
+<div class='note-callout'><div class='note-title'>Note</div><div class='note-body'>Note: When reviewing inspections significant issues may became apparent that would not be captured by specific questions within the template. These issues may not always be related to the quality of the inspection report. For example, a bridge may have no interim measures in place but the recorded capacity below 40 Tonnes Assessment Live Loading. It is important that such issues are not ignored, and any such issues identified in the course of undertaking the review should be captured in the ‘Further Comments’ box.</div></div>
 <div class='spacer'></div>
 <div class='spacer'></div>
-<div class='spacer'></div>
-      </div>
-    </section>
-    
+<div class='spacer'></div></div>
+</section>
 
-        <div class="footer-note">Generated from the provided guidance document. All question wording is preserved as-is.</div>
+        <div class="footer-note">All question numbering and wording is preserved as provided.</div>
       </main>
     </div>
   </div>
 
 <script>
-const tableData = {"tbl_001": [["Inspection Summary", "This should give a representative overview of the structure condition in relation to its construction type, age and usage. Defects, which are or may affect the structural integrity and / or the durability of the structure, should be specifically identified. Defects, which affect appearance, only should be briefly summarised. Significant proposed Maintenance Actions should be identified."]], "tbl_002": [["Element Type", "Bridge & Large Culverts", "Small Span Structures", "Retaining Walls", "Sign/Signal Gantries", "Masts & Mast Schemes"], ["Abutment Wall", "P", "", "", "", ""], ["Bearing", "P", "", "", "", ""], ["Bracing", "P", "", "", "P", ""], ["Cable", "P", "", "", "", ""], ["Cable Anchor Box", "P", "", "", "", ""], ["Cable Hangar", "P", "", "", "", ""], ["Cable System", "P", "", "", "", ""], ["Crosshead", "P", "", "", "", ""], ["Deck", "P", "", "", "P", ""], ["Diaphragm", "P", "", "", "", ""], ["End Support", "P", "", "", "P", ""], ["Expansion Joint", "P", "", "", "", ""], ["Floating Slab", "P", "", "", "", ""], ["Foundation", "P", "", "P", "P", "P"], ["Headwall", "", "P", "", "", ""], ["Intermediate Support", "P", "", "", "P", ""], ["Piers / Columns", "P", "", "", "", ""], ["Longitudinal Beam", "P", "", "", "P", ""], ["Longitudinal Beam Detail", "P", "", "", "P", ""], ["Maintenance Access", "", "", "", "P", ""], ["Mast", "", "", "", "", "P"], ["Mast Connection", "", "", "", "", "P"], ["Movement Joint", "P", "", "", "", ""], ["Panel", "", "", "P", "", ""], ["Parapet Beam / Plinth", "P", "", "P", "", ""], ["Pedestrian Restraint System", "P", "P", "P", "P", ""], ["Pylon", "P", "", "", "", ""], ["Road Vehicle Restraint System", "P", "P", "P", "P", ""], ["Slab or Arch", "P", "", "", "", ""], ["Small Culvert", "", "P", "", "", ""], ["Span Connection", "", "", "", "P", ""], ["Spandrel Wall", "P", "", "", "", ""], ["Structural Joint", "P", "", "", "", ""], ["Support Connection", "", "", "", "P", ""], ["Tie Beam or Rod", "P", "", "", "", ""], ["Transverse Beam", "P", "", "", "P", ""], ["Wingwall", "P", "P", "", "", ""]], "tbl_003": [["Element Type", "Bridge & Large Culverts", "Small Span Structures", "Retaining Walls", "Sign/Signal Gantries", "Masts & Mast Schemes"], ["Abutment Wall", "P", "", "", "", ""], ["Bearing", "P", "", "", "", ""], ["Bracing", "P", "", "", "P", ""], ["Cable", "P", "", "", "", ""], ["Cable Anchor Box", "P", "", "", "", ""], ["Cable Hangar", "P", "", "", "", ""], ["Cable System", "P", "", "", "", ""], ["Crosshead", "P", "", "", "", ""], ["Deck", "P", "", "", "P", ""], ["Diaphragm", "P", "", "", "", ""], ["End Support", "P", "", "", "P", ""], ["Expansion Joint", "P", "", "", "", ""], ["Floating Slab", "P", "", "", "", ""], ["Foundation", "P", "", "P", "P", "P"], ["Headwall", "", "P", "", "", ""], ["Intermediate Support", "P", "", "", "P", ""], ["Piers / Columns", "P", "", "", "", ""], ["Longitudinal Beam", "P", "", "", "P", ""], ["Longitudinal Beam Detail", "P", "", "", "P", ""], ["Maintenance Access", "", "", "", "P", ""], ["Mast", "", "", "", "", "P"], ["Mast Connection", "", "", "", "", "P"], ["Movement Joint", "P", "", "", "", ""], ["Panel", "", "", "P", "", ""], ["Parapet Beam / Plinth", "P", "", "P", "", ""], ["Pedestrian Restraint System", "P", "P", "P", "P", ""], ["Pylon", "P", "", "", "", ""], ["Road Vehicle Restraint System", "P", "P", "P", "P", ""], ["Slab or Arch", "P", "", "", "", ""], ["Small Culvert", "", "P", "", "", ""], ["Span Connection", "", "", "", "P", ""], ["Spandrel Wall", "P", "", "", "", ""], ["Structural Joint", "P", "", "", "", ""], ["Support Connection", "", "", "", "P", ""], ["Tie Beam or Rod", "P", "", "", "", ""], ["Transverse Beam", "P", "", "", "P", ""], ["Wingwall", "P", "P", "", "", ""]]};
-function openTableWindow(tableId){
-  const rows = tableData[tableId];
-  if(!rows) return;
-  const w = window.open('', '_blank', 'noopener,noreferrer');
-  const esc = (s)=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-  let htmlStr = `
-  <!doctype html>
-  <html><head><meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Table</title>
-  <style>
-    body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:24px; background:#ffffff;}
-    table{border-collapse:collapse; width:100%;}
-    th,td{border:1px solid #e2e8f0; padding:10px; vertical-align:top;}
-    th{background:#f1f5f9; text-align:left; position:sticky; top:0;}
-  </style>
-  </head><body>
-  <h1>Table</h1>
-  <table>`;
-  rows.forEach((row, r)=>{
-    htmlStr += '<tr>';
-    row.forEach(cell=>{
-      const tag = (r===0)?'th':'td';
-      htmlStr += `<${tag}>${esc(cell).replaceAll('\n','<br>')}</${tag}>`;
-    });
-    htmlStr += '</tr>';
-  });
-  htmlStr += `</table></body></html>`;
-  w.document.open(); w.document.write(htmlStr); w.document.close();
-}
 function copyLink(id){
   const url = new URL(window.location.href);
   url.hash = id;
   navigator.clipboard.writeText(url.toString());
-}
-function toggleCollapse(id){
-  const sec = document.getElementById(id);
-  if(!sec) return;
-  const body = sec.querySelector('.q-body');
-  if(!body) return;
-  body.classList.toggle('collapsed');
 }
 function filterQuestions(){
   const q = document.getElementById('search').value.toLowerCase().trim();
@@ -686,13 +1289,74 @@ function filterQuestions(){
     const hit = (q==='' || title.includes(q) || text.includes(q) || id.includes(q));
     card.style.display = hit ? '' : 'none';
   });
-  // Filter sidebar in sync
   document.querySelectorAll('#navList a').forEach(a=>{
     const target = document.querySelector(a.getAttribute('href'));
     if(!target) return;
     a.parentElement.style.display = (target.style.display === 'none') ? 'none' : '';
   });
 }
+
+/* --- WOW interactions --- */
+(function(){
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reveal cards on scroll
+  const cards = Array.from(document.querySelectorAll('.q-card'));
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('revealed');
+          io.unobserve(e.target);
+        }
+      });
+    }, {root:null, rootMargin:'0px 0px -10% 0px', threshold: 0.06});
+    cards.forEach(c=>io.observe(c));
+  } else {
+    cards.forEach(c=>c.classList.add('revealed'));
+  }
+
+  // Active nav highlight + scroll spy
+  const navLinks = Array.from(document.querySelectorAll('#navList a'));
+  const map = new Map(navLinks.map(a=>[a.getAttribute('href')?.slice(1), a]));
+  if('IntersectionObserver' in window){
+    const so = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          navLinks.forEach(l=>l.classList.remove('active'));
+          const a = map.get(e.target.id);
+          if(a) a.classList.add('active');
+        }
+      });
+    }, {root:null, rootMargin:'-20% 0px -70% 0px', threshold: 0.01});
+    cards.forEach(c=>so.observe(c));
+  }
+
+  // Scroll progress
+  const bar = document.getElementById('progressBar');
+  const onScroll = ()=>{
+    const docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const sc = (docH > 0) ? (window.scrollY / docH) : 0;
+    if(bar) bar.style.width = `${Math.min(100, Math.max(0, sc*100)).toFixed(2)}%`;
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Toast helper
+  const toast = document.getElementById('toast');
+  const toastTitle = document.getElementById('toastTitle');
+  const toastBody = document.getElementById('toastBody');
+  let toastTimer = null;
+  window.showToast = (title, body)=>{
+    if(!toast) return;
+    if(toastTitle) toastTitle.textContent = title || 'Done';
+    if(toastBody) toastBody.textContent = body || '';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>toast.classList.remove('show'), 2200);
+  };
+})();
+
 </script>
 </body>
 </html>
